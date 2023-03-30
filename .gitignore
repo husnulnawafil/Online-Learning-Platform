@@ -1,6 +1,7 @@
 .env
-tmp
 
+tmp/main
+tmp/build-errors.log
 .DS_Store
 .idea
 vendor
