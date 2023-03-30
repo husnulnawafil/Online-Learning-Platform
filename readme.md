@@ -14,5 +14,5 @@
 3. Send request to `localhost:<port>`.
 
 - ### run on the server
-1. 
+1. In postman collection change the `localhost:<port>` to this ``. 
 2. 
