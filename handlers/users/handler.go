@@ -25,10 +25,6 @@ func init() {
 	})
 }
 
-func MiddlewareTest(ctx *fiber.Ctx) error {
-	return ctx.Status(http.StatusOK).JSON("OK LANJUT")
-}
-
 func RegisterUser(ctx *fiber.Ctx) error {
 	data := &models.User{}
 	name := ctx.FormValue("name")
