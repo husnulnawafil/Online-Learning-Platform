@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"net/http"
+	"strings"
 	"sync"
 
 	"github.com/gofiber/fiber/v2"
@@ -34,6 +35,7 @@ func CreateCategory(ctx *fiber.Ctx) error {
 				"oops please fill the name",
 			))
 	}
+	data.Name = strings.TrimSpace(strings.ToUpper(data.Name))
 
 	err := service.CreateCategory(ctx.Context(), data)
 	if err != nil {
