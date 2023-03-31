@@ -12,10 +12,6 @@ import (
 	"github.com/husnulnawafil/online-learning-platform/global/constants"
 )
 
-var (
-	TOKEN_SECRET = os.Getenv("TOKEN_SECRET")
-)
-
 func GenerateToken(uuid, role string) (string, error) {
 	tokenExpired := time.Now().Add(constants.TokenExpiration)
 	authClaims := jwt.MapClaims{}
@@ -24,7 +20,7 @@ func GenerateToken(uuid, role string) (string, error) {
 	authClaims["role"] = role
 	authClaims["iat"] = time.Now().Unix()
 
-	return jwt.NewWithClaims(jwt.SigningMethodHS256, authClaims).SignedString([]byte(TOKEN_SECRET))
+	return jwt.NewWithClaims(jwt.SigningMethodHS256, authClaims).SignedString([]byte(os.Getenv(os.Getenv("TOKEN_SECRET"))))
 }
 
 func ValidateToken(token string) (*jwt.MapClaims, int, error) {
@@ -32,8 +28,10 @@ func ValidateToken(token string) (*jwt.MapClaims, int, error) {
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
 			return nil, fmt.Errorf("oops error in validating token, signing method invalid: %v", token.Header["alg"])
 		}
-		return []byte(TOKEN_SECRET), nil
+		return []byte(os.Getenv("TOKEN_SECRET")), nil
 	})
+
+	fmt.Println(os.Getenv("TOKEN_SECRET"))
 
 	if err != nil {
 		if strings.EqualFold(err.Error(), jwt.ErrTokenExpired.Error()) {
