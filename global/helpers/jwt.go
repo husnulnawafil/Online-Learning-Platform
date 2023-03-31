@@ -20,7 +20,7 @@ func GenerateToken(uuid, role string) (string, error) {
 	authClaims["role"] = role
 	authClaims["iat"] = time.Now().Unix()
 
-	return jwt.NewWithClaims(jwt.SigningMethodHS256, authClaims).SignedString([]byte(os.Getenv(os.Getenv(os.Getenv("TOKEN_SECRET")))))
+	return jwt.NewWithClaims(jwt.SigningMethodHS256, authClaims).SignedString([]byte(os.Getenv("TOKEN_SECRET")))
 }
 
 func ValidateToken(token string) (*jwt.MapClaims, int, error) {
