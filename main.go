@@ -4,6 +4,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/husnulnawafil/online-learning-platform/global/constants"
 	middlewares "github.com/husnulnawafil/online-learning-platform/global/middlewares"
+	categoryHandlers "github.com/husnulnawafil/online-learning-platform/handlers/categories"
 	courseHandlers "github.com/husnulnawafil/online-learning-platform/handlers/courses"
 	statisticHandlers "github.com/husnulnawafil/online-learning-platform/handlers/statistics"
 	userHandlers "github.com/husnulnawafil/online-learning-platform/handlers/users"
@@ -15,6 +16,7 @@ func main() {
 	users := api.Group("users")
 	auths := api.Group("auths")
 	courses := api.Group("courses")
+	categories := api.Group("categories")
 
 	// COURSES
 	courses.Post("/", middlewares.Access(constants.RoleAdmin)(courseHandlers.CreateCourse))
@@ -23,6 +25,11 @@ func main() {
 	courses.Put("/:uuid", middlewares.Access(constants.RoleAdmin)(courseHandlers.UpdateCourse))
 	courses.Delete("/:uuid", middlewares.Access(constants.RoleAdmin)(courseHandlers.DeleteCourse))
 	courses.Get("/count", middlewares.Access(constants.RoleAdmin)(statisticHandlers.CountCourse))
+
+	// CATEGORIES
+	categories.Post("/", middlewares.Access(constants.RoleAdmin)(categoryHandlers.CreateCategory))
+	categories.Get("/:name", middlewares.Access(constants.AllRole)(categoryHandlers.GetCategoryDetail))
+	categories.Get("/", middlewares.Access(constants.AllRole)(categoryHandlers.GetCategories))
 
 	// AUTHS
 	auths.Post("/register", userHandlers.RegisterUser)
