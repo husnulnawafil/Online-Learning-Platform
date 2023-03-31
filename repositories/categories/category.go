@@ -24,7 +24,7 @@ func NewCategoryRepository() *CategoryRepositoryInstance {
 	}
 }
 
-func (c *CategoryRepositoryInstance) CreateCourse(ctx context.Context, data models.CourseCategory) error {
+func (c *CategoryRepositoryInstance) CreateCategory(ctx context.Context, data models.CourseCategory) error {
 	res, err := c.Collection.InsertOne(ctx, data)
 	if res == nil {
 		return err
