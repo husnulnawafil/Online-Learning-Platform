@@ -16,7 +16,7 @@ func GenerateToken(uuid, role string) (string, error) {
 	tokenExpired := time.Now().Add(constants.TokenExpiration)
 	authClaims := jwt.MapClaims{}
 	authClaims["uuid"] = uuid
-	authClaims["exp"] = tokenExpired
+	authClaims["exp"] = tokenExpired.Unix()
 	authClaims["role"] = role
 	authClaims["iat"] = time.Now().Unix()
 
