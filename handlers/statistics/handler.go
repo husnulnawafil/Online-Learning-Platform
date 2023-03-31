@@ -26,7 +26,7 @@ func CountCourse(ctx *fiber.Ctx) error {
 	if err != nil {
 		return ctx.
 			Status(http.StatusInternalServerError).
-			JSON(helpers.ReponseWithoutData(
+			JSON(helpers.ResponseWithoutData(
 				http.StatusInternalServerError,
 				"oops error while retrieving the data , err :"+err.Error(),
 			))
@@ -48,7 +48,7 @@ func CountUser(ctx *fiber.Ctx) error {
 	if err != nil {
 		return ctx.
 			Status(http.StatusInternalServerError).
-			JSON(helpers.ReponseWithoutData(
+			JSON(helpers.ResponseWithoutData(
 				http.StatusInternalServerError,
 				"oops error while retrieving the data , err :"+err.Error(),
 			))

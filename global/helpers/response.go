@@ -20,7 +20,7 @@ func ReponseWithData(code int, message string, data interface{}) *APIResponse {
 	}
 }
 
-func ReponseWithoutData(code int, message string) *APIResponse {
+func ResponseWithoutData(code int, message string) *APIResponse {
 	return &APIResponse{
 		&Meta{
 			StatusCode: code,

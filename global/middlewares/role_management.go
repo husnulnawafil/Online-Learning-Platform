@@ -21,7 +21,7 @@ func Access(allowedRole ...string) func(handlerFunc) handlerFunc {
 			if err := ctx.ReqHeaderParser(reqHeader); err != nil {
 				return ctx.
 					Status(http.StatusUnauthorized).
-					JSON(helpers.ReponseWithoutData(
+					JSON(helpers.ResponseWithoutData(
 						http.StatusUnauthorized,
 						"oops unable to authorize, error in parsing authorization header",
 					))
@@ -30,7 +30,7 @@ func Access(allowedRole ...string) func(handlerFunc) handlerFunc {
 			if reqHeader.Authorization == "" {
 				return ctx.
 					Status(http.StatusUnauthorized).
-					JSON(helpers.ReponseWithoutData(
+					JSON(helpers.ResponseWithoutData(
 						http.StatusUnauthorized,
 						"oops you need to be logged in first to perform this endpoint",
 					))
@@ -41,7 +41,7 @@ func Access(allowedRole ...string) func(handlerFunc) handlerFunc {
 			if err != nil {
 				return ctx.
 					Status(statusCode).
-					JSON(helpers.ReponseWithoutData(
+					JSON(helpers.ResponseWithoutData(
 						statusCode,
 						err.Error(),
 					))
@@ -52,7 +52,7 @@ func Access(allowedRole ...string) func(handlerFunc) handlerFunc {
 			if !ok {
 				return ctx.
 					Status(http.StatusForbidden).
-					JSON(helpers.ReponseWithoutData(
+					JSON(helpers.ResponseWithoutData(
 						http.StatusForbidden,
 						"oops do not trick me, your token does not mention your role",
 					))
@@ -61,7 +61,7 @@ func Access(allowedRole ...string) func(handlerFunc) handlerFunc {
 			if ok := helpers.ContainString(constants.Roles, role.(string)); !ok {
 				return ctx.
 					Status(http.StatusForbidden).
-					JSON(helpers.ReponseWithoutData(
+					JSON(helpers.ResponseWithoutData(
 						http.StatusForbidden,
 						"oops you are not allowed",
 					))
@@ -75,7 +75,7 @@ func Access(allowedRole ...string) func(handlerFunc) handlerFunc {
 			if ok := helpers.ContainString(allowedRole, role.(string)); !ok {
 				return ctx.
 					Status(http.StatusForbidden).
-					JSON(helpers.ReponseWithoutData(
+					JSON(helpers.ResponseWithoutData(
 						http.StatusForbidden,
 						"oops you are forbidden for perform this action",
 					))

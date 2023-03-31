@@ -31,7 +31,7 @@ func RegisterUser(ctx *fiber.Ctx) error {
 	if name == "" {
 		return ctx.
 			Status(http.StatusBadRequest).
-			JSON(helpers.ReponseWithoutData(
+			JSON(helpers.ResponseWithoutData(
 				http.StatusBadRequest,
 				"oops please fill the name",
 			))
@@ -42,7 +42,7 @@ func RegisterUser(ctx *fiber.Ctx) error {
 	if email == "" {
 		return ctx.
 			Status(http.StatusBadRequest).
-			JSON(helpers.ReponseWithoutData(
+			JSON(helpers.ResponseWithoutData(
 				http.StatusBadRequest,
 				"oops please fill the email",
 			))
@@ -53,7 +53,7 @@ func RegisterUser(ctx *fiber.Ctx) error {
 	if err != nil {
 		return ctx.
 			Status(http.StatusInternalServerError).
-			JSON(helpers.ReponseWithoutData(
+			JSON(helpers.ResponseWithoutData(
 				http.StatusInternalServerError,
 				err.Error(),
 			))
@@ -62,7 +62,7 @@ func RegisterUser(ctx *fiber.Ctx) error {
 	if exist.UUID != "" {
 		return ctx.
 			Status(http.StatusBadRequest).
-			JSON(helpers.ReponseWithoutData(
+			JSON(helpers.ResponseWithoutData(
 				http.StatusBadRequest,
 				"oops seems you have been registered yet, please login",
 			))
@@ -72,7 +72,7 @@ func RegisterUser(ctx *fiber.Ctx) error {
 	if password == "" {
 		return ctx.
 			Status(http.StatusBadRequest).
-			JSON(helpers.ReponseWithoutData(
+			JSON(helpers.ResponseWithoutData(
 				http.StatusBadRequest,
 				"oops please fill the password",
 			))
@@ -82,7 +82,7 @@ func RegisterUser(ctx *fiber.Ctx) error {
 	if err != nil {
 		return ctx.
 			Status(http.StatusInternalServerError).
-			JSON(helpers.ReponseWithoutData(
+			JSON(helpers.ResponseWithoutData(
 				http.StatusInternalServerError,
 				"oops register can not be continue, we are not being able to secure your password",
 			))
@@ -99,7 +99,7 @@ func RegisterUser(ctx *fiber.Ctx) error {
 		if err != nil {
 			return ctx.
 				Status(http.StatusInternalServerError).
-				JSON(helpers.ReponseWithoutData(
+				JSON(helpers.ResponseWithoutData(
 					http.StatusInternalServerError,
 					"oops, error in uploading user profile image, err : %s"+err.Error(),
 				))
@@ -111,7 +111,7 @@ func RegisterUser(ctx *fiber.Ctx) error {
 	if err != nil {
 		return ctx.
 			Status(http.StatusInternalServerError).
-			JSON(helpers.ReponseWithoutData(
+			JSON(helpers.ResponseWithoutData(
 				http.StatusInternalServerError,
 				"oops, sorry we are unable registering your data, err : %s"+err.Error(),
 			))
@@ -133,7 +133,7 @@ func LoginUser(ctx *fiber.Ctx) error {
 	if err := ctx.BodyParser(requestLogin); err != nil {
 		return ctx.
 			Status(http.StatusInternalServerError).
-			JSON(helpers.ReponseWithoutData(
+			JSON(helpers.ResponseWithoutData(
 				http.StatusInternalServerError,
 				"oops, sorry we are having trouble to continue your request, err : %s"+err.Error(),
 			))
@@ -144,7 +144,7 @@ func LoginUser(ctx *fiber.Ctx) error {
 	if email == "" {
 		return ctx.
 			Status(http.StatusBadRequest).
-			JSON(helpers.ReponseWithoutData(
+			JSON(helpers.ResponseWithoutData(
 				http.StatusBadRequest,
 				"oops, please fill the email please to login",
 			))
@@ -153,7 +153,7 @@ func LoginUser(ctx *fiber.Ctx) error {
 	if password == "" {
 		return ctx.
 			Status(http.StatusBadRequest).
-			JSON(helpers.ReponseWithoutData(
+			JSON(helpers.ResponseWithoutData(
 				http.StatusBadRequest,
 				"oops, you can not login with empty password",
 			))
@@ -163,7 +163,7 @@ func LoginUser(ctx *fiber.Ctx) error {
 	if err != nil {
 		return ctx.
 			Status(http.StatusInternalServerError).
-			JSON(helpers.ReponseWithoutData(
+			JSON(helpers.ResponseWithoutData(
 				http.StatusInternalServerError,
 				err.Error(),
 			))
@@ -172,7 +172,7 @@ func LoginUser(ctx *fiber.Ctx) error {
 	if user.UUID == "" {
 		return ctx.
 			Status(http.StatusBadRequest).
-			JSON(helpers.ReponseWithoutData(
+			JSON(helpers.ResponseWithoutData(
 				http.StatusBadRequest,
 				"oops seems you have not been registered yet, please register",
 			))
@@ -183,7 +183,7 @@ func LoginUser(ctx *fiber.Ctx) error {
 	if ok := helpers.CheckPasswordHash(password, storedPassword); !ok {
 		return ctx.
 			Status(http.StatusBadRequest).
-			JSON(helpers.ReponseWithoutData(
+			JSON(helpers.ResponseWithoutData(
 				http.StatusBadRequest,
 				"oops, sorry you input the incorrect password",
 			))
@@ -193,7 +193,7 @@ func LoginUser(ctx *fiber.Ctx) error {
 	if err != nil {
 		return ctx.
 			Status(http.StatusInternalServerError).
-			JSON(helpers.ReponseWithoutData(
+			JSON(helpers.ResponseWithoutData(
 				http.StatusInternalServerError,
 				"oops, we are unable to get you login, please try again",
 			))
@@ -218,7 +218,7 @@ func DeleteUser(ctx *fiber.Ctx) error {
 	if err != nil {
 		return ctx.
 			Status(http.StatusInternalServerError).
-			JSON(helpers.ReponseWithoutData(
+			JSON(helpers.ResponseWithoutData(
 				http.StatusInternalServerError,
 				"oops server unable to retrieve the user detail",
 			))
@@ -227,7 +227,7 @@ func DeleteUser(ctx *fiber.Ctx) error {
 	if user.UUID == "" {
 		return ctx.
 			Status(http.StatusOK).
-			JSON(helpers.ReponseWithoutData(
+			JSON(helpers.ResponseWithoutData(
 				http.StatusOK,
 				"the user not found",
 			))
@@ -237,7 +237,7 @@ func DeleteUser(ctx *fiber.Ctx) error {
 	if err != nil {
 		return ctx.
 			Status(http.StatusInternalServerError).
-			JSON(helpers.ReponseWithoutData(
+			JSON(helpers.ResponseWithoutData(
 				http.StatusInternalServerError,
 				"oops error to delete the user, err : "+err.Error(),
 			))
@@ -246,7 +246,7 @@ func DeleteUser(ctx *fiber.Ctx) error {
 	if delCount <= 0 {
 		return ctx.
 			Status(http.StatusOK).
-			JSON(helpers.ReponseWithoutData(
+			JSON(helpers.ResponseWithoutData(
 				http.StatusOK,
 				"unfortunately, the user not yet been deleted or not found",
 			))
@@ -254,7 +254,7 @@ func DeleteUser(ctx *fiber.Ctx) error {
 
 	return ctx.
 		Status(http.StatusOK).
-		JSON(helpers.ReponseWithoutData(
+		JSON(helpers.ResponseWithoutData(
 			http.StatusOK,
 			fmt.Sprintf(`yay user "%s" has been deleted`, user.Name),
 		))

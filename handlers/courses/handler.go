@@ -32,29 +32,29 @@ func CreateCourse(ctx *fiber.Ctx) error {
 	if name == "" {
 		return ctx.
 			Status(http.StatusBadRequest).
-			JSON(helpers.ReponseWithoutData(
+			JSON(helpers.ResponseWithoutData(
 				http.StatusBadRequest,
 				"oops please fill the name",
 			))
 	}
 	data.Name = name
 
-	// category := ctx.FormValue("category")
-	// if category == "" {
-	// 	return ctx.
-	// 		Status(http.StatusBadRequest).
-	// 		JSON(helpers.ReponseWithoutData(
-	// 			http.StatusBadRequest,
-	// 			"oops please fill the category",
-	// 		))
-	// }
-	// data.Category = category
+	category := ctx.FormValue("category")
+	if category == "" {
+		return ctx.
+			Status(http.StatusBadRequest).
+			JSON(helpers.ResponseWithoutData(
+				http.StatusBadRequest,
+				"oops please fill the category",
+			))
+	}
+	data.Category = category
 
 	priceString := ctx.FormValue("price")
 	if priceString == "" {
 		return ctx.
 			Status(http.StatusBadRequest).
-			JSON(helpers.ReponseWithoutData(
+			JSON(helpers.ResponseWithoutData(
 				http.StatusBadRequest,
 				"oops please provide price, fill with 0 if it's free",
 			))
@@ -64,7 +64,7 @@ func CreateCourse(ctx *fiber.Ctx) error {
 	if err != nil {
 		return ctx.
 			Status(http.StatusBadRequest).
-			JSON(helpers.ReponseWithoutData(
+			JSON(helpers.ResponseWithoutData(
 				http.StatusBadRequest,
 				"oops price should be number",
 			))
@@ -76,7 +76,7 @@ func CreateCourse(ctx *fiber.Ctx) error {
 	if price < 0 {
 		return ctx.
 			Status(http.StatusBadRequest).
-			JSON(helpers.ReponseWithoutData(
+			JSON(helpers.ResponseWithoutData(
 				http.StatusBadRequest,
 				"oops price should not be negative value",
 			))
@@ -93,7 +93,7 @@ func CreateCourse(ctx *fiber.Ctx) error {
 		if err != nil {
 			return ctx.
 				Status(http.StatusInternalServerError).
-				JSON(helpers.ReponseWithoutData(
+				JSON(helpers.ResponseWithoutData(
 					http.StatusInternalServerError,
 					"oops, error in uploading course image, err : %s"+err.Error(),
 				))
@@ -105,7 +105,7 @@ func CreateCourse(ctx *fiber.Ctx) error {
 	if err != nil {
 		return ctx.
 			Status(http.StatusInternalServerError).
-			JSON(helpers.ReponseWithoutData(
+			JSON(helpers.ResponseWithoutData(
 				http.StatusInternalServerError,
 				"oops got error when inserted data to database, err : "+err.Error(),
 			))
@@ -127,7 +127,7 @@ func GetCourseDetail(ctx *fiber.Ctx) error {
 	if uuid == "" {
 		return ctx.
 			Status(http.StatusBadRequest).
-			JSON(helpers.ReponseWithoutData(
+			JSON(helpers.ResponseWithoutData(
 				http.StatusBadRequest,
 				"oops please provide uuid please",
 			))
@@ -136,7 +136,7 @@ func GetCourseDetail(ctx *fiber.Ctx) error {
 	if err != nil {
 		return ctx.
 			Status(http.StatusInternalServerError).
-			JSON(helpers.ReponseWithoutData(
+			JSON(helpers.ResponseWithoutData(
 				http.StatusInternalServerError,
 				"oops server unable to retrieve the course detail",
 			))
@@ -145,7 +145,7 @@ func GetCourseDetail(ctx *fiber.Ctx) error {
 	if course.UUID == "" {
 		return ctx.
 			Status(http.StatusOK).
-			JSON(helpers.ReponseWithoutData(
+			JSON(helpers.ResponseWithoutData(
 				http.StatusOK,
 				"the course not found",
 			))
@@ -171,7 +171,7 @@ func GetCourseList(ctx *fiber.Ctx) error {
 	if err != nil {
 		return ctx.
 			Status(http.StatusBadRequest).
-			JSON(helpers.ReponseWithoutData(
+			JSON(helpers.ResponseWithoutData(
 				http.StatusBadRequest,
 				"oops error in retrieving course list",
 			))
@@ -194,7 +194,7 @@ func UpdateCourse(ctx *fiber.Ctx) error {
 	if err != nil {
 		return ctx.
 			Status(http.StatusInternalServerError).
-			JSON(helpers.ReponseWithoutData(
+			JSON(helpers.ResponseWithoutData(
 				http.StatusInternalServerError,
 				"oops server unable to retrieve the course detail",
 			))
@@ -203,7 +203,7 @@ func UpdateCourse(ctx *fiber.Ctx) error {
 	if course.UUID == "" {
 		return ctx.
 			Status(http.StatusOK).
-			JSON(helpers.ReponseWithoutData(
+			JSON(helpers.ResponseWithoutData(
 				http.StatusOK,
 				"the course not found",
 			))
@@ -220,7 +220,7 @@ func UpdateCourse(ctx *fiber.Ctx) error {
 		if err != nil {
 			return ctx.
 				Status(http.StatusBadRequest).
-				JSON(helpers.ReponseWithoutData(
+				JSON(helpers.ResponseWithoutData(
 					http.StatusBadRequest,
 					"oops price should be number",
 				))
@@ -237,7 +237,7 @@ func UpdateCourse(ctx *fiber.Ctx) error {
 		if price < 0 {
 			return ctx.
 				Status(http.StatusBadRequest).
-				JSON(helpers.ReponseWithoutData(
+				JSON(helpers.ResponseWithoutData(
 					http.StatusBadRequest,
 					"oops price should not be negative value",
 				))
@@ -251,7 +251,7 @@ func UpdateCourse(ctx *fiber.Ctx) error {
 		if err != nil {
 			return ctx.
 				Status(http.StatusInternalServerError).
-				JSON(helpers.ReponseWithoutData(
+				JSON(helpers.ResponseWithoutData(
 					http.StatusInternalServerError,
 					"oops, error in uploading course image, err : %s"+err.Error(),
 				))
@@ -262,7 +262,7 @@ func UpdateCourse(ctx *fiber.Ctx) error {
 	if err != nil {
 		return ctx.
 			Status(http.StatusInternalServerError).
-			JSON(helpers.ReponseWithoutData(
+			JSON(helpers.ResponseWithoutData(
 				http.StatusInternalServerError,
 				"oops, error updated the course, err : %s"+err.Error(),
 			))
@@ -271,7 +271,7 @@ func UpdateCourse(ctx *fiber.Ctx) error {
 	if updateCount <= 0 {
 		return ctx.
 			Status(http.StatusOK).
-			JSON(helpers.ReponseWithoutData(
+			JSON(helpers.ResponseWithoutData(
 				http.StatusOK,
 				"unfortunately, the course has not been updated yet or not found",
 			))
@@ -295,7 +295,7 @@ func DeleteCourse(ctx *fiber.Ctx) error {
 	if err != nil {
 		return ctx.
 			Status(http.StatusInternalServerError).
-			JSON(helpers.ReponseWithoutData(
+			JSON(helpers.ResponseWithoutData(
 				http.StatusInternalServerError,
 				"oops server unable to retrieve the course detail",
 			))
@@ -304,7 +304,7 @@ func DeleteCourse(ctx *fiber.Ctx) error {
 	if course.UUID == "" {
 		return ctx.
 			Status(http.StatusOK).
-			JSON(helpers.ReponseWithoutData(
+			JSON(helpers.ResponseWithoutData(
 				http.StatusOK,
 				"the course not found",
 			))
@@ -314,7 +314,7 @@ func DeleteCourse(ctx *fiber.Ctx) error {
 	if err != nil {
 		return ctx.
 			Status(http.StatusInternalServerError).
-			JSON(helpers.ReponseWithoutData(
+			JSON(helpers.ResponseWithoutData(
 				http.StatusInternalServerError,
 				"oops error to delete the course, err : "+err.Error(),
 			))
@@ -323,7 +323,7 @@ func DeleteCourse(ctx *fiber.Ctx) error {
 	if delCount <= 0 {
 		return ctx.
 			Status(http.StatusOK).
-			JSON(helpers.ReponseWithoutData(
+			JSON(helpers.ResponseWithoutData(
 				http.StatusOK,
 				"unfortunately, the course not yet been deleted or not found",
 			))
@@ -331,7 +331,7 @@ func DeleteCourse(ctx *fiber.Ctx) error {
 
 	return ctx.
 		Status(http.StatusOK).
-		JSON(helpers.ReponseWithoutData(
+		JSON(helpers.ResponseWithoutData(
 			http.StatusOK,
 			fmt.Sprintf(`yay course "%s" has been deleted`, course.Name),
 		))
