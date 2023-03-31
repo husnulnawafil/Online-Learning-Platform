@@ -31,8 +31,6 @@ func ValidateToken(token string) (*jwt.MapClaims, int, error) {
 		return []byte(os.Getenv("TOKEN_SECRET")), nil
 	})
 
-	fmt.Println(os.Getenv("TOKEN_SECRET"))
-
 	if err != nil {
 		if strings.EqualFold(err.Error(), jwt.ErrTokenExpired.Error()) {
 			return nil, http.StatusUnauthorized, errors.New("oops token is expired, relog or refresh for new token")
