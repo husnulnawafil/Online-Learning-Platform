@@ -14,7 +14,7 @@ type CategoryServiceInstance struct {
 	categoryRepo categoryRepositories.CategoryRepository
 }
 
-func NewCourseService() CategoryService {
+func NewCategoryService() CategoryService {
 	repoCategory := categoryRepositories.NewCategoryRepository()
 	return &CategoryServiceInstance{
 		categoryRepo: repoCategory,
