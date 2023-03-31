@@ -10,7 +10,7 @@
 5. Put `.env` file on root directory project
 6. Simply run `air init` to initiniate the air.
 7. Run `air` to run the app.
-8. Download postman collection [postman collection](./)
+8. Download postman collection [postman collection](./docs/Online%20Learning%20Platform.postman_collection.json)
 3. Send request to `localhost:<port>`.
 
 - ### run on the server
