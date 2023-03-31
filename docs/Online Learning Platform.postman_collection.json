@@ -17,7 +17,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYjlhNTc4OGItODJhNS00N2ZlLTkzMzQtODBmYzk5M2ZkN2Q0Iiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNTE3MjM5MDIyLCJleHAiOjE3MTkyNDkwMjJ9.3AsNAKgVShPd1tQmWoyMqTyL3QHobQdjT-eKd41hgoc",
 									"type": "string"
 								}
 							]
@@ -29,7 +29,7 @@
 							"formdata": [
 								{
 									"key": "name",
-									"value": "Python Fundamental III",
+									"value": "Python Fundamental I",
 									"type": "text"
 								},
 								{
@@ -176,15 +176,10 @@
 							]
 						},
 						"url": {
-							"raw": "http://127.0.0.1:3000/api/courses/:uuid",
-							"protocol": "http",
+							"raw": "{{ec3000}}/api/courses/:uuid",
 							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
+								"{{ec3000}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"courses",
@@ -239,15 +234,10 @@
 							]
 						},
 						"url": {
-							"raw": "http://127.0.0.1:3000/api/courses/:uuid",
-							"protocol": "http",
+							"raw": "{{ec3000}}/api/courses/:uuid",
 							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
+								"{{ec3000}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"courses",
@@ -302,15 +292,10 @@
 							]
 						},
 						"url": {
-							"raw": "http://127.0.0.1:3000/api/courses/count",
-							"protocol": "http",
+							"raw": "{{ec3000}}/api/courses/count",
 							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
+								"{{ec3000}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"courses",
@@ -363,15 +348,10 @@
 							]
 						},
 						"url": {
-							"raw": "http://127.0.0.1:3000/api/courses/:uuid",
-							"protocol": "http",
+							"raw": "{{ec3000}}/api/courses/:uuid",
 							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
+								"{{ec3000}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"courses",
@@ -408,15 +388,10 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:3000/api/users/:uuid",
-							"protocol": "http",
+							"raw": "{{ec3000}}/api/users/:uuid",
 							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
+								"{{ec3000}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"users",
@@ -427,49 +402,6 @@
 									"key": "uuid",
 									"value": "587205b7-1b0e-4182-8266-ed8644a2a649"
 								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Register User",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "name",
-									"value": "Husnul Nawafil",
-									"type": "text"
-								},
-								{
-									"key": "email",
-									"value": "husnul@gmail.com",
-									"type": "text"
-								},
-								{
-									"key": "password",
-									"value": "qwerty123",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "http://127.0.0.1:3000/api/users",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"users"
 							]
 						}
 					},
@@ -515,13 +447,52 @@
 			"name": "Auths",
 			"item": [
 				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Husnul Nawafil",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "husnulnawafil27@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "qwerty123",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{ec3000}}/api/auths/register",
+							"host": [
+								"{{ec3000}}"
+							],
+							"path": [
+								"api",
+								"auths",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Auth Login",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\":\"husnul@gmail.com\",\n    \"password\":\"qwerty123\"\n}",
+							"raw": "{\n    \"email\":\"husnulnawafil27@gmai.com\",\n    \"password\":\"admin123\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -529,15 +500,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:3000/api/auths/login",
-							"protocol": "http",
+							"raw": "{{ec3000}}/api/auths/login",
 							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
+								"{{ec3000}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"auths",
@@ -577,15 +543,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:3000/api/categories",
-							"protocol": "http",
+							"raw": "{{ec3000}}/api/categories",
 							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
+								"{{ec3000}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"categories"
@@ -602,7 +563,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYjlhNTc4OGItODJhNS00N2ZlLTkzMzQtODBmYzk5M2ZkN2Q0Iiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNTE3MjM5MDIyLCJleHAiOjE3MTkyNDkwMjJ9.3AsNAKgVShPd1tQmWoyMqTyL3QHobQdjT-eKd41hgoc",
 									"type": "string"
 								}
 							]
@@ -610,15 +571,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:3000/api/categories?sortBy=popularity&sortDir=asc&search=programming",
-							"protocol": "http",
+							"raw": "{{ec3000}}/api/categories?sortBy=popularity&sortDir=asc&search=programming",
 							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
+								"{{ec3000}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"categories"
@@ -660,15 +616,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:3000/api/categories/:name",
-							"protocol": "http",
+							"raw": "{{ec3000}}/api/categories/:name",
 							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
+								"{{ec3000}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"categories",
