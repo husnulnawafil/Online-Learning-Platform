@@ -254,65 +254,6 @@
 					"response": []
 				},
 				{
-					"name": "Count Course",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "name",
-									"value": "Aku bukanlah superman 3",
-									"type": "text"
-								},
-								{
-									"key": "price",
-									"value": "100000",
-									"type": "text"
-								},
-								{
-									"key": "fileImage",
-									"type": "file",
-									"src": "/Users/husnulnawafil/Downloads/1579760429832.jpeg"
-								}
-							]
-						},
-						"url": {
-							"raw": "{{ec3000}}/api/courses/count",
-							"host": [
-								"{{ec3000}}"
-							],
-							"path": [
-								"api",
-								"courses",
-								"count"
-							],
-							"query": [
-								{
-									"key": "isFree",
-									"value": "true",
-									"disabled": true
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Delete Course By UUID",
 					"request": {
 						"auth": {
@@ -402,40 +343,6 @@
 									"key": "uuid",
 									"value": "587205b7-1b0e-4182-8266-ed8644a2a649"
 								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Count Users",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://127.0.0.1:3000/api/users/count",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"users",
-								"count"
 							]
 						}
 					},
@@ -631,6 +538,77 @@
 									"value": "programming",
 									"description": "the name field from category list"
 								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Statistics",
+			"item": [
+				{
+					"name": "Count Course",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODAzNzY3NjIsImlhdCI6MTY4MDI5MDM2Miwicm9sZSI6IlVTRVIiLCJ1dWlkIjoiM2Q4ZDc0MjktZTc5Ni00ZTQ5LThiMzItYTNkYzY2MTlhY2YzIn0.AFVJKq75Chtmx84uNPy2NFxJ2Yy7IJhgzF3SE6_tV-8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ec3000}}/api/statistics/courses/count?isFree=true",
+							"host": [
+								"{{ec3000}}"
+							],
+							"path": [
+								"api",
+								"statistics",
+								"courses",
+								"count"
+							],
+							"query": [
+								{
+									"key": "isFree",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Count Users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODAzNzY3NjIsImlhdCI6MTY4MDI5MDM2Miwicm9sZSI6IlVTRVIiLCJ1dWlkIjoiM2Q4ZDc0MjktZTc5Ni00ZTQ5LThiMzItYTNkYzY2MTlhY2YzIn0.AFVJKq75Chtmx84uNPy2NFxJ2Yy7IJhgzF3SE6_tV-8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ec3000}}/api/statistics/users/count",
+							"host": [
+								"{{ec3000}}"
+							],
+							"path": [
+								"api",
+								"statistics",
+								"users",
+								"count"
 							]
 						}
 					},
