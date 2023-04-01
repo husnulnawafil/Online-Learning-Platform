@@ -17,6 +17,7 @@ func main() {
 	auths := api.Group("auths")
 	courses := api.Group("courses")
 	categories := api.Group("categories")
+	statistics := api.Group("statistics")
 
 	// COURSES
 	courses.Post("/", middlewares.Access(constants.RoleAdmin)(courseHandlers.CreateCourse))
@@ -24,7 +25,6 @@ func main() {
 	courses.Get("/", middlewares.Access(constants.AllRole)(courseHandlers.GetCourseList))
 	courses.Put("/:uuid", middlewares.Access(constants.RoleAdmin)(courseHandlers.UpdateCourse))
 	courses.Delete("/:uuid", middlewares.Access(constants.RoleAdmin)(courseHandlers.DeleteCourse))
-	courses.Get("/count", middlewares.Access(constants.RoleAdmin)(statisticHandlers.CountCourse))
 
 	// CATEGORIES
 	categories.Post("/", middlewares.Access(constants.RoleAdmin)(categoryHandlers.CreateCategory))
@@ -37,7 +37,10 @@ func main() {
 
 	// USERS
 	users.Delete("/:uuid", middlewares.Access(constants.RoleAdmin)(userHandlers.DeleteUser))
-	users.Get("/count", middlewares.Access(constants.RoleAdmin)(statisticHandlers.CountUser))
+
+	// STATISTICS
+	statistics.Get("/users/count", middlewares.Access(constants.RoleAdmin)(statisticHandlers.CountUser))
+	statistics.Get("/courses/count", middlewares.Access(constants.RoleAdmin)(statisticHandlers.CountCourse))
 
 	app.Listen(":3000")
 }
